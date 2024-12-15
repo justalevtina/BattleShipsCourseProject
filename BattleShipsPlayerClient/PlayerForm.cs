@@ -16,7 +16,7 @@ namespace BattleShipsPlayerClient
         private const string alphabet = "ABCDEFGHIJ";
         private const int MapSize = 11;
         private const int CellSize = 30;
-        private const int ShipsNumber = 20;
+        private const int ShipsNumber = 3;
         private int MyShipsCount = 0;
         private int EnemyShipsCount = 0;
 
@@ -132,6 +132,7 @@ namespace BattleShipsPlayerClient
 
         public void MyMove(object sender, EventArgs e)
         {
+            Console.WriteLine("i am in my move");
             Button PressedButton = sender as Button;
 
             int i = PressedButton.Location.Y / CellSize - 1;
@@ -162,6 +163,7 @@ namespace BattleShipsPlayerClient
         }
         private async void StartButtonClick(object sender, EventArgs e)
         {
+            Console.WriteLine("start but");
             try
             {
                 if (MyShipsCount < ShipsNumber)
@@ -169,6 +171,8 @@ namespace BattleShipsPlayerClient
                 else
                 {
                     // отправка своего поля на сервер
+
+                    Console.WriteLine("toserver");
                     string MyMap = "";
                     for (int i = 1; i < MapSize; i++)
                         for (int j = 1; j < MapSize; j++)
@@ -180,9 +184,11 @@ namespace BattleShipsPlayerClient
                     CancellationTokenSource cancelTokenSource = new CancellationTokenSource();
                     CancellationToken token = cancelTokenSource.Token;
 
+                    Console.WriteLine("before server");
                     string EnemyMap = "";
                     Task task = Task.Run(async () =>
                     {
+                        Console.WriteLine("sever");
                         byte[] buffer = new byte[1024];
                         int bytesRead = await stream.ReadAsync(buffer, 0, buffer.Length, token);
                         int k = 0;
@@ -200,17 +206,25 @@ namespace BattleShipsPlayerClient
                                 EnemyMapArray[i, j].Enabled = true;
                     }, token);
 
+                    Console.WriteLine("blok");
                     // блокировка элементов карты
                     for (int i = 1; i < MapSize; i++)
                         for (int j = 1; j < MapSize; j++)
                             MyMapArray[i, j].Enabled = false;
 
+                    // блокировка элементов карты
+                    for (int i = 1; i < MapSize; i++)
+                        for (int j = 1; j < MapSize; j++)
+                            EnemyMapArray[i, j].Enabled = true;
+
+                    Console.WriteLine("not my err");
                     // отмена задачи при закрытии формы
                     FormClosing += (s, ea) => cancelTokenSource.Cancel();
                 }
             }
             catch (Exception exception)
             {
+                Console.WriteLine("error");
                 MessageBox.Show(exception.Message, "");
             }
         }
