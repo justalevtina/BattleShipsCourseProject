@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{0F5A5AA5-4E0B-4FC7-8506-9F04DCA16B53}</ProjectGuid>
+    <ProjectGuid>{323037C9-68B7-4A47-9178-556813F5C75F}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Mastermind_Start</RootNamespace>
-    <AssemblyName>Mastermind_Start</AssemblyName>
+    <RootNamespace>Mastermind_Client</RootNamespace>
+    <AssemblyName>Mastermind_Solver_Client</AssemblyName>
     <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -46,16 +46,26 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChoiseForm.cs">
+    <Compile Include="ConnectionForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="ChoiseForm.Designer.cs">
-      <DependentUpon>ChoiseForm.cs</DependentUpon>
+    <Compile Include="ConnectionForm.Designer.cs">
+      <DependentUpon>ConnectionForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PlayerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PlayerForm.Designer.cs">
+      <DependentUpon>PlayerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Connector.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="ChoiseForm.resx">
-      <DependentUpon>ChoiseForm.cs</DependentUpon>
+    <EmbeddedResource Include="ConnectionForm.resx">
+      <DependentUpon>ConnectionForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PlayerForm.resx">
+      <DependentUpon>PlayerForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -78,16 +88,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Mastermind_Solver_Client\Mastermind_Solver_Client.csproj">
-      <Project>{323037c9-68b7-4a47-9178-556813f5c75f}</Project>
-      <Name>Mastermind_Solver_Client</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\Mastermind_Coder_Client\Mastermind_Coder_Client.csproj">
-      <Project>{87d0227d-280f-4718-96e8-016b222ceba5}</Project>
-      <Name>Mastermind_Coder_Client</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

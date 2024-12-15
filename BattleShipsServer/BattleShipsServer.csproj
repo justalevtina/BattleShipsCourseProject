@@ -45,7 +45,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Mastermind_Solver_Client\BattleShipsPlayerClient.csproj">
+    <ProjectReference Include="..\BattleShipsPlayerClient\BattleShipsPlayerClient.csproj">
       <Project>{323037c9-68b7-4a47-9178-556813f5c75f}</Project>
       <Name>BattleShipsPlayerClient</Name>
     </ProjectReference>
